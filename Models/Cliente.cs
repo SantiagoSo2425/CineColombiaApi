@@ -21,11 +21,8 @@ public partial class Cliente
 
     public bool Activo { get; set; }
 
-   // public virtual TipoCliente IdTipoClienteNavigation { get; set; } = null!;
+    public int RegistradoPor { get; set; }
 
-    //public virtual TipoDocumento IdTipoDocNavigation { get; set; } = null!;
+    public DateTime FechaRegistro { get; set; }
 
-    // public virtual TarjetaFidelizacion? TarjetaFidelizacion { get; set; }
-
-   // public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
 }

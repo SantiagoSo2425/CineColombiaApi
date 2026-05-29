@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -71,7 +70,23 @@ public class clsOpeTarjetaFidelizacion
         tarjeta.PuntosAcumulados = tblTarjetaFidelizacion.PuntosAcumulados;
         tarjeta.DescuentoPorcentaje = tblTarjetaFidelizacion.DescuentoPorcentaje;
         tarjeta.Estado = tblTarjetaFidelizacion.Estado;
+        tarjeta.RegistradoPor = tblTarjetaFidelizacion.RegistradoPor;
+        tarjeta.FechaRegistro = tblTarjetaFidelizacion.FechaRegistro;
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
 
+    public int Inactivar(int idTarjeta)
+    {
+        var tarjeta = (from x in oCine.TarjetaFidelizacions
+                       where x.IdTarjeta == idTarjeta
+                       select x).FirstOrDefault();
+
+        if (tarjeta == null)
+        {
+            return -2;
+        }
+
+        tarjeta.Estado = false;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

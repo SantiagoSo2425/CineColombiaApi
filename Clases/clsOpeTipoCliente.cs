@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -56,7 +55,6 @@ public class clsOpeTipoCliente
 
         tipoCliente.Nombre = tblTipoCliente.Nombre;
         tipoCliente.Descripcion = tblTipoCliente.Descripcion;
-
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

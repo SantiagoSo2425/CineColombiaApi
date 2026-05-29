@@ -10,6 +10,4 @@ public partial class Idioma
     public string Nombre { get; set; } = null!;
 
     public string Codigo { get; set; } = null!;
-
-   // public virtual ICollection<Funcion> Funcions { get; set; } = new List<Funcion>();
 }

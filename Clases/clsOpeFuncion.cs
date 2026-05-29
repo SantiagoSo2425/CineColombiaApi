@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -77,7 +76,24 @@ public class clsOpeFuncion
         funcion.HoraFin = tblFuncion.HoraFin;
         funcion.PrecioBase = tblFuncion.PrecioBase;
         funcion.Estado = tblFuncion.Estado;
+        funcion.RegistradoPor = tblFuncion.RegistradoPor;
+        funcion.FechaRegistro = tblFuncion.FechaRegistro;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idFuncion)
+    {
+        var funcion = (from x in oCine.Funcions
+                       where x.IdFuncion == idFuncion
+                       select x).FirstOrDefault();
+
+        if (funcion == null)
+        {
+            return -2;
+        }
+
+        funcion.Estado = false;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

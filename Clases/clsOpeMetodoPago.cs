@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -55,7 +54,6 @@ public class clsOpeMetodoPago
         }
 
         metodoPago.Nombre = tblMetodoPago.Nombre;
-
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

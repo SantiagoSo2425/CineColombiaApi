@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -50,7 +49,24 @@ public class clsOpeSala
         sala.NombreSala = tblSala.NombreSala;
         sala.CapacidadTotal = tblSala.CapacidadTotal;
         sala.Activo = tblSala.Activo;
+        sala.RegistradoPor = tblSala.RegistradoPor;
+        sala.FechaRegistro = tblSala.FechaRegistro;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idSala)
+    {
+        var sala = (from x in oCine.Salas
+                    where x.IdSala == idSala
+                    select x).FirstOrDefault();
+
+        if (sala == null)
+        {
+            return -2;
+        }
+
+        sala.Activo = false;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

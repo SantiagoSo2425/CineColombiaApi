@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using apiCine.Clases;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,5 +45,12 @@ public class BoleticaController : ControllerBase
         clsOpeBoletica oBoletica = new clsOpeBoletica(oCine);
         oBoletica.tblBoletica = boletica;
         return oBoletica.Modificar();
+    }
+
+    [HttpPut("inactivar/{idBoletica}")]
+    public int Inactivar(int idBoletica)
+    {
+        clsOpeBoletica oBoletica = new clsOpeBoletica(oCine);
+        return oBoletica.Inactivar(idBoletica);
     }
 }

@@ -21,5 +21,7 @@ public partial class TarjetaFidelizacion
 
     public bool Estado { get; set; }
 
-   // public virtual Cliente IdClienteNavigation { get; set; } = null!;
+    public int RegistradoPor { get; set; }
+
+    public DateTime FechaRegistro { get; set; }
 }

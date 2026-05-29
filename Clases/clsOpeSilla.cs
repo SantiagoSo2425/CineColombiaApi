@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -73,7 +72,24 @@ public class clsOpeSilla
         silla.Fila = tblSilla.Fila;
         silla.Numero = tblSilla.Numero;
         silla.Estado = tblSilla.Estado;
+        silla.RegistradoPor = tblSilla.RegistradoPor;
+        silla.FechaRegistro = tblSilla.FechaRegistro;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idSilla)
+    {
+        var silla = (from x in oCine.Sillas
+                     where x.IdSilla == idSilla
+                     select x).FirstOrDefault();
+
+        if (silla == null)
+        {
+            return -2;
+        }
+
+        silla.Estado = 0;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

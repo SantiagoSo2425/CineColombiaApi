@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using apiCine.Clases;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +31,13 @@ public class VentaController : ControllerBase
         return oVenta.ConsultarVenta(idVenta);
     }
 
+    [HttpGet("{idVenta}/detalle")]
+    public IQueryable ConsultarDetalleVenta(int idVenta)
+    {
+        clsOpeVenta oVenta = new clsOpeVenta(oCine);
+        return oVenta.ConsultarDetalleVenta(idVenta);
+    }
+
     [HttpPost]
     public int Agregar([FromBody] Ventum venta)
     {
@@ -46,5 +52,12 @@ public class VentaController : ControllerBase
         clsOpeVenta oVenta = new clsOpeVenta(oCine);
         oVenta.tblVenta = venta;
         return oVenta.Modificar();
+    }
+
+    [HttpPut("inactivar/{idVenta}")]
+    public int Inactivar(int idVenta)
+    {
+        clsOpeVenta oVenta = new clsOpeVenta(oCine);
+        return oVenta.Inactivar(idVenta);
     }
 }

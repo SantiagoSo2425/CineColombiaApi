@@ -10,6 +10,4 @@ public partial class TipoSilla
     public string Nombre { get; set; } = null!;
 
     public decimal PrecioBase { get; set; }
-
-   // public virtual ICollection<Silla> Sillas { get; set; } = new List<Silla>();
 }

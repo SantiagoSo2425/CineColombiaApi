@@ -17,11 +17,7 @@ public partial class Sala
 
     public bool Activo { get; set; }
 
-   // public virtual ICollection<Funcion> Funcions { get; set; } = new List<Funcion>();
+    public int RegistradoPor { get; set; }
 
-    //public virtual Teatro IdTeatroNavigation { get; set; } = null!;
-
-    //public virtual TipoSala IdTipoSalaNavigation { get; set; } = null!;
-
-//    public virtual ICollection<Silla> Sillas { get; set; } = new List<Silla>();
+    public DateTime FechaRegistro { get; set; }
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -93,6 +92,21 @@ public class clsOpeBoleticaSilla
         boleticaSilla.PrecioFinal = tblBoleticaSilla.PrecioFinal;
         boleticaSilla.Estado = tblBoleticaSilla.Estado;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idBoleticaSilla)
+    {
+        var boleticaSilla = (from x in oCine.BoleticaSillas
+                             where x.IdBoleticaSilla == idBoleticaSilla
+                             select x).FirstOrDefault();
+
+        if (boleticaSilla == null)
+        {
+            return -2;
+        }
+
+        boleticaSilla.Estado = 0;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

@@ -19,7 +19,4 @@ public partial class BoleticaSilla
 
     public int Estado { get; set; }
 
-   // public virtual Boletica IdBoleticaNavigation { get; set; } = null!;
-
-   // public virtual Silla IdSillaNavigation { get; set; } = null!;
 }

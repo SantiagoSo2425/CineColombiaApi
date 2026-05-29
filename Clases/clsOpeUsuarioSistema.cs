@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -97,7 +96,24 @@ public class clsOpeUsuarioSistema
         usuario.PasswordHash = tblUsuarioSistema.PasswordHash;
         usuario.Activo = tblUsuarioSistema.Activo;
         usuario.UltimoLogin = tblUsuarioSistema.UltimoLogin;
+        usuario.RegistradoPor = tblUsuarioSistema.RegistradoPor;
+        usuario.FechaRegistro = tblUsuarioSistema.FechaRegistro;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idUsuario)
+    {
+        var usuario = (from x in oCine.UsuarioSistemas
+                       where x.IdUsuario == idUsuario
+                       select x).FirstOrDefault();
+
+        if (usuario == null)
+        {
+            return -2;
+        }
+
+        usuario.Activo = false;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using apiCine.Clases;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,5 +45,12 @@ public class TarjetaFidelizacionController : ControllerBase
         clsOpeTarjetaFidelizacion oTarjeta = new clsOpeTarjetaFidelizacion(oCine);
         oTarjeta.tblTarjetaFidelizacion = tarjeta;
         return oTarjeta.Modificar();
+    }
+
+    [HttpPut("inactivar/{idTarjeta}")]
+    public int Inactivar(int idTarjeta)
+    {
+        clsOpeTarjetaFidelizacion oTarjeta = new clsOpeTarjetaFidelizacion(oCine);
+        return oTarjeta.Inactivar(idTarjeta);
     }
 }

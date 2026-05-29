@@ -23,11 +23,4 @@ public partial class Ventum
 
     public bool Estado { get; set; }
 
-   // public virtual ICollection<Boletica> Boleticas { get; set; } = new List<Boletica>();
-
-    //public virtual Cliente? IdClienteNavigation { get; set; }
-
-    //public virtual Empleado IdEmpleadoNavigation { get; set; } = null!;
-
-    //public virtual MetodoPago IdMetodoPagoNavigation { get; set; } = null!;
 }

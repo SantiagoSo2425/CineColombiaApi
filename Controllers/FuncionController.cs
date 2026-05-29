@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using apiCine.Clases;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,5 +45,12 @@ public class FuncionController : ControllerBase
         clsOpeFuncion oFuncion = new clsOpeFuncion(oCine);
         oFuncion.tblFuncion = funcion;
         return oFuncion.Modificar();
+    }
+
+    [HttpPut("inactivar/{idFuncion}")]
+    public int Inactivar(int idFuncion)
+    {
+        clsOpeFuncion oFuncion = new clsOpeFuncion(oCine);
+        return oFuncion.Inactivar(idFuncion);
     }
 }

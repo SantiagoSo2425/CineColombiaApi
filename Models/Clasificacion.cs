@@ -10,6 +10,4 @@ public partial class Clasificacion
     public string Codigo { get; set; } = null!;
 
     public string Descripcion { get; set; } = null!;
-
-   // public virtual ICollection<Pelicula> Peliculas { get; set; } = new List<Pelicula>();
 }

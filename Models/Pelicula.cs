@@ -19,13 +19,11 @@ public partial class Pelicula
 
     public DateOnly AnioEstreno { get; set; }
 
-    public int DuracionMin { get; set; }
-
     public string? TrailerLink { get; set; }
 
-   // public virtual ICollection<Funcion> Funcions { get; set; } = new List<Funcion>();
+    public int DuracionMin { get; set; }
 
-   // public virtual Clasificacion IdClasificacionNavigation { get; set; } = null!;
+    public int RegistradoPor { get; set; }
 
-   // public virtual Genero IdGeneroNavigation { get; set; } = null!;
+    public DateTime FechaRegistro { get; set; }
 }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using apiCine.Clases;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,5 +45,12 @@ public class ClienteController : ControllerBase
         clsOpeCliente oCliente = new clsOpeCliente(oCine);
         oCliente.tblCliente = cliente;
         return oCliente.Modificar();
+    }
+
+    [HttpPut("inactivar/{idCliente}")]
+    public int Inactivar(int idCliente)
+    {
+        clsOpeCliente oCliente = new clsOpeCliente(oCine);
+        return oCliente.Inactivar(idCliente);
     }
 }

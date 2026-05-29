@@ -7,6 +7,8 @@ public partial class Empleado
 {
     public int IdEmpleado { get; set; }
 
+    public string CodigoEmpleado { get; set; } = null!;
+
     public int IdTeatro { get; set; }
 
     public int IdTipoDoc { get; set; }
@@ -21,11 +23,7 @@ public partial class Empleado
 
     public bool Activo { get; set; }
 
-   // public virtual Teatro IdTeatroNavigation { get; set; } = null!;
+    public int? RegistradoPor { get; set; }
 
-    //public virtual TipoDocumento IdTipoDocNavigation { get; set; } = null!;
-
-   // public virtual UsuarioSistema? UsuarioSistema { get; set; }
-
-    //public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
+    public DateTime FechaRegistro { get; set; }
 }

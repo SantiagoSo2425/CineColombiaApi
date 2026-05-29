@@ -1,4 +1,5 @@
-using apiSIA.Models;
+
+using CineColombiaApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

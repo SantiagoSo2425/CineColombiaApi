@@ -25,13 +25,8 @@ public partial class Funcion
 
     public bool Estado { get; set; }
 
-   // public virtual ICollection<Boletica> Boleticas { get; set; } = new List<Boletica>();
+    public int RegistradoPor { get; set; }
 
-   // public virtual Formato IdFormatoNavigation { get; set; } = null!;
+    public DateTime FechaRegistro { get; set; }
 
-    //public virtual Idioma IdIdiomaNavigation { get; set; } = null!;
-
-   // public virtual Pelicula IdPeliculaNavigation { get; set; } = null!;
-
-    //public virtual Sala IdSalaNavigation { get; set; } = null!;
 }

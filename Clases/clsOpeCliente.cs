@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -62,7 +61,24 @@ public class clsOpeCliente
         cliente.Apellidos = tblCliente.Apellidos;
         cliente.Email = tblCliente.Email;
         cliente.Activo = tblCliente.Activo;
+        cliente.RegistradoPor = tblCliente.RegistradoPor;
+        cliente.FechaRegistro = tblCliente.FechaRegistro;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idCliente)
+    {
+        var cliente = (from x in oCine.Clientes
+                       where x.IdCliente == idCliente
+                       select x).FirstOrDefault();
+
+        if (cliente == null)
+        {
+            return -2;
+        }
+
+        cliente.Activo = false;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

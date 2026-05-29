@@ -7,13 +7,19 @@ public partial class Teatro
 {
     public int IdTeatro { get; set; }
 
+    public int IdCiudad { get; set; }
+
     public string Nombre { get; set; } = null!;
 
     public string Direccion { get; set; } = null!;
 
+    public string? Telefono { get; set; }
+
+    public string? Email { get; set; }
+
     public bool Activo { get; set; }
 
-   // public virtual ICollection<Empleado> Empleados { get; set; } = new List<Empleado>();
+    public int? RegistradoPor { get; set; }
 
-    //public virtual ICollection<Sala> Salas { get; set; } = new List<Sala>();
+    public DateTime FechaRegistro { get; set; }
 }

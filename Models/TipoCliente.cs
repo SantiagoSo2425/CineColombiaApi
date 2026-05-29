@@ -10,6 +10,4 @@ public partial class TipoCliente
     public string Nombre { get; set; } = null!;
 
     public string Descripcion { get; set; } = null!;
-
-   // public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 }

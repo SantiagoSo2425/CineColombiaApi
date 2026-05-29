@@ -19,7 +19,8 @@ public partial class UsuarioSistema
 
     public DateTime? UltimoLogin { get; set; }
 
-   // public virtual Empleado IdEmpleadoNavigation { get; set; } = null!;
+    public int RegistradoPor { get; set; }
 
-    //public virtual Rol IdRolNavigation { get; set; } = null!;
+    public DateTime FechaRegistro { get; set; }
+
 }

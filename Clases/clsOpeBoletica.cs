@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -49,6 +48,21 @@ public class clsOpeBoletica
         boletica.IdFuncion = tblBoletica.IdFuncion;
         boletica.Estado = tblBoletica.Estado;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idBoletica)
+    {
+        var boletica = (from x in oCine.Boleticas
+                        where x.IdBoletica == idBoletica
+                        select x).FirstOrDefault();
+
+        if (boletica == null)
+        {
+            return -2;
+        }
+
+        boletica.Estado = 0;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

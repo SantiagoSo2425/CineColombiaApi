@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -26,6 +25,13 @@ public class clsOpeVenta
         return from x in oCine.Venta
                where x.IdVenta == idVenta
                select x;
+    }
+
+    public IQueryable ConsultarDetalleVenta(int idVenta)
+    {
+        return from b in oCine.Boleticas
+               where b.IdVenta == idVenta
+               select b;
     }
 
     public int Agregar()
@@ -54,6 +60,21 @@ public class clsOpeVenta
         venta.TotalVenta = tblVenta.TotalVenta;
         venta.Estado = tblVenta.Estado;
 
+        return oCine.SaveChanges() > 0 ? 1 : 0;
+    }
+
+    public int Inactivar(int idVenta)
+    {
+        var venta = (from x in oCine.Venta
+                     where x.IdVenta == idVenta
+                     select x).FirstOrDefault();
+
+        if (venta == null)
+        {
+            return -2;
+        }
+
+        venta.Estado = false;
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }

@@ -17,9 +17,7 @@ public partial class Silla
 
     public int Estado { get; set; }
 
-   // public virtual ICollection<BoleticaSilla> BoleticaSillas { get; set; } = new List<BoleticaSilla>();
+    public int RegistradoPor { get; set; }
 
-    //public virtual Sala IdSalaNavigation { get; set; } = null!;
-
-    //public virtual TipoSilla IdTipoSillaNavigation { get; set; } = null!;
+    public DateTime FechaRegistro { get; set; }
 }

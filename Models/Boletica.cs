@@ -12,10 +12,4 @@ public partial class Boletica
     public int IdFuncion { get; set; }
 
     public int Estado { get; set; }
-
-   // public virtual ICollection<BoleticaSilla> BoleticaSillas { get; set; } = new List<BoleticaSilla>();
-
-   // public virtual Funcion IdFuncionNavigation { get; set; } = null!;
-
-   // public virtual Ventum IdVentaNavigation { get; set; } = null!;
 }

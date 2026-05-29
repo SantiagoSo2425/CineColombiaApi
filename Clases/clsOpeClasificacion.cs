@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using apiSIA.Models;
 using CineColombiaApi.Models;
 
 namespace apiCine.Clases;
@@ -56,7 +55,6 @@ public class clsOpeClasificacion
 
         clasificacion.Codigo = tblClasificacion.Codigo;
         clasificacion.Descripcion = tblClasificacion.Descripcion;
-
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
 }
