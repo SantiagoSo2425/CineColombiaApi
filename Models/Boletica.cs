@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace CineColombiaApi.Models;
+
+public partial class Boletica
+{
+    public int IdBoletica { get; set; }
+
+    public int IdVenta { get; set; }
+
+    public int IdFuncion { get; set; }
+
+    public int Estado { get; set; }
+
+   // public virtual ICollection<BoleticaSilla> BoleticaSillas { get; set; } = new List<BoleticaSilla>();
+
+   // public virtual Funcion IdFuncionNavigation { get; set; } = null!;
+
+   // public virtual Ventum IdVentaNavigation { get; set; } = null!;
+}

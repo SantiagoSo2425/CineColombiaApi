@@ -1,0 +1,6 @@
+@CineColombiaApi_HostAddress = http://localhost:5140
+
+GET {{CineColombiaApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
