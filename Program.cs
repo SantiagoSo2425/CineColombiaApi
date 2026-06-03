@@ -53,16 +53,7 @@ app.UseSwaggerUI(c =>
 
 app.UseCors("CineCors");
 
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path == "/")
-    {
-        context.Response.Redirect("/swagger");
-        return;
-    }
-
-    await next();
-});
+app.MapGet("/", () => "Hey there! Welcome to CineColombia API.");
 
 app.MapControllers();
 
