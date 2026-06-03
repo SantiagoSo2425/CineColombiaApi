@@ -15,9 +15,13 @@ public class clsOpeCiudad
         tblCiudad = new Ciudad();
     }
 
-    public List<Ciudad> ListarCiudades()
+    public List<Ciudad> ListarCiudades(int page = 1, int pageSize = 50)
     {
-        return oCine.Ciudads.ToList();
+        return oCine.Ciudads
+            .OrderBy(c => c.IdCiudad)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
     }
 
     public IQueryable ConsultarCiudad(int idCiudad)
