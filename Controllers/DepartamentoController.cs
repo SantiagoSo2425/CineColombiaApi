@@ -18,32 +18,56 @@ public class DepartamentoController : ControllerBase
     }
 
     [HttpGet]
-    public List<Departamento> ListarDepartamentos()
+    public IActionResult ListarDepartamentos([FromQuery] int page = 1, [FromQuery] int pageSize = 50)
     {
         clsOpeDepartamento oDepartamento = new clsOpeDepartamento(oCine);
-        return oDepartamento.ListarDepartamentos();
+        return Ok(oDepartamento.ListarDepartamentos(page, pageSize));
     }
 
     [HttpGet("{idDepartamento}")]
-    public IQueryable ConsultarDepartamento(int idDepartamento)
+    public IActionResult ConsultarDepartamento(int idDepartamento)
     {
         clsOpeDepartamento oDepartamento = new clsOpeDepartamento(oCine);
-        return oDepartamento.ConsultarDepartamento(idDepartamento);
+        return Ok(oDepartamento.ConsultarDepartamento(idDepartamento));
     }
 
     [HttpPost]
-    public int Agregar([FromBody] Departamento departamento)
+    public IActionResult Agregar([FromBody] Departamento departamento)
     {
         clsOpeDepartamento oDepartamento = new clsOpeDepartamento(oCine);
         oDepartamento.tblDepartamento = departamento;
-        return oDepartamento.Agregar();
+        var resultado = oDepartamento.Agregar();
+
+        if (resultado == 1)
+        {
+            return CreatedAtAction(nameof(ConsultarDepartamento), new { idDepartamento = departamento.IdDepartamento }, departamento);
+        }
+
+        if (resultado == -1)
+        {
+            return Conflict();
+        }
+
+        return BadRequest();
     }
 
     [HttpPut]
-    public int Modificar([FromBody] Departamento departamento)
+    public IActionResult Modificar([FromBody] Departamento departamento)
     {
         clsOpeDepartamento oDepartamento = new clsOpeDepartamento(oCine);
         oDepartamento.tblDepartamento = departamento;
-        return oDepartamento.Modificar();
+        var resultado = oDepartamento.Modificar();
+
+        if (resultado == 1)
+        {
+            return Ok();
+        }
+
+        if (resultado == -2)
+        {
+            return NotFound();
+        }
+
+        return BadRequest();
     }
 }

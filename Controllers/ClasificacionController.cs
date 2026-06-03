@@ -18,32 +18,56 @@ public class ClasificacionController : ControllerBase
     }
 
     [HttpGet]
-    public List<Clasificacion> ListarClasificaciones()
+    public IActionResult ListarClasificaciones([FromQuery] int page = 1, [FromQuery] int pageSize = 50)
     {
         clsOpeClasificacion oClasificacion = new clsOpeClasificacion(oCine);
-        return oClasificacion.ListarClasificaciones();
+        return Ok(oClasificacion.ListarClasificaciones(page, pageSize));
     }
 
     [HttpGet("{idClasificacion}")]
-    public IQueryable ConsultarClasificacion(int idClasificacion)
+    public IActionResult ConsultarClasificacion(int idClasificacion)
     {
         clsOpeClasificacion oClasificacion = new clsOpeClasificacion(oCine);
-        return oClasificacion.ConsultarClasificacion(idClasificacion);
+        return Ok(oClasificacion.ConsultarClasificacion(idClasificacion));
     }
 
     [HttpPost]
-    public int Agregar([FromBody] Clasificacion clasificacion)
+    public IActionResult Agregar([FromBody] Clasificacion clasificacion)
     {
         clsOpeClasificacion oClasificacion = new clsOpeClasificacion(oCine);
         oClasificacion.tblClasificacion = clasificacion;
-        return oClasificacion.Agregar();
+        var resultado = oClasificacion.Agregar();
+
+        if (resultado == 1)
+        {
+            return CreatedAtAction(nameof(ConsultarClasificacion), new { idClasificacion = clasificacion.IdClasificacion }, clasificacion);
+        }
+
+        if (resultado == -1)
+        {
+            return Conflict();
+        }
+
+        return BadRequest();
     }
 
     [HttpPut]
-    public int Modificar([FromBody] Clasificacion clasificacion)
+    public IActionResult Modificar([FromBody] Clasificacion clasificacion)
     {
         clsOpeClasificacion oClasificacion = new clsOpeClasificacion(oCine);
         oClasificacion.tblClasificacion = clasificacion;
-        return oClasificacion.Modificar();
+        var resultado = oClasificacion.Modificar();
+
+        if (resultado == 1)
+        {
+            return Ok();
+        }
+
+        if (resultado == -2)
+        {
+            return NotFound();
+        }
+
+        return BadRequest();
     }
 }
