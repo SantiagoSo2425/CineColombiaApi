@@ -1,0 +1,3 @@
+
+## Authentication Implementation
+Add JWT authentication to `Program.cs`:
