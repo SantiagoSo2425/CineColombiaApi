@@ -15,9 +15,13 @@ public class clsOpeClasificacion
         tblClasificacion = new Clasificacion();
     }
 
-    public List<Clasificacion> ListarClasificaciones()
+    public List<Clasificacion> ListarClasificaciones(int page = 1, int pageSize = 50)
     {
-        return oCine.Clasificacions.ToList();
+        return oCine.Clasificacions
+            .OrderBy(c => c.IdClasificacion)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
     }
 
     public IQueryable ConsultarClasificacion(int idClasificacion)

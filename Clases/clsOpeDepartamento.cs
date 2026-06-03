@@ -15,9 +15,13 @@ public class clsOpeDepartamento
         tblDepartamento = new Departamento();
     }
 
-    public List<Departamento> ListarDepartamentos()
+    public List<Departamento> ListarDepartamentos(int page = 1, int pageSize = 50)
     {
-        return oCine.Departamentos.ToList();
+        return oCine.Departamentos
+            .OrderBy(d => d.IdDepartamento)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
     }
 
     public IQueryable ConsultarDepartamento(int idDepartamento)
