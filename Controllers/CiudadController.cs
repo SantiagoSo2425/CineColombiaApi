@@ -18,32 +18,56 @@ public class CiudadController : ControllerBase
     }
 
     [HttpGet]
-    public List<Ciudad> ListarCiudades()
+    public IActionResult ListarCiudades([FromQuery] int page = 1, [FromQuery] int pageSize = 50)
     {
         clsOpeCiudad oCiudad = new clsOpeCiudad(oCine);
-        return oCiudad.ListarCiudades();
+        return Ok(oCiudad.ListarCiudades(page, pageSize));
     }
 
     [HttpGet("{idCiudad}")]
-    public IQueryable ConsultarCiudad(int idCiudad)
+    public IActionResult ConsultarCiudad(int idCiudad)
     {
         clsOpeCiudad oCiudad = new clsOpeCiudad(oCine);
-        return oCiudad.ConsultarCiudad(idCiudad);
+        return Ok(oCiudad.ConsultarCiudad(idCiudad));
     }
 
     [HttpPost]
-    public int Agregar([FromBody] Ciudad ciudad)
+    public IActionResult Agregar([FromBody] Ciudad ciudad)
     {
         clsOpeCiudad oCiudad = new clsOpeCiudad(oCine);
         oCiudad.tblCiudad = ciudad;
-        return oCiudad.Agregar();
+        var resultado = oCiudad.Agregar();
+
+        if (resultado == 1)
+        {
+            return CreatedAtAction(nameof(ConsultarCiudad), new { idCiudad = ciudad.IdCiudad }, ciudad);
+        }
+
+        if (resultado == -1)
+        {
+            return Conflict();
+        }
+
+        return BadRequest();
     }
 
     [HttpPut]
-    public int Modificar([FromBody] Ciudad ciudad)
+    public IActionResult Modificar([FromBody] Ciudad ciudad)
     {
         clsOpeCiudad oCiudad = new clsOpeCiudad(oCine);
         oCiudad.tblCiudad = ciudad;
-        return oCiudad.Modificar();
+        var resultado = oCiudad.Modificar();
+
+        if (resultado == 1)
+        {
+            return Ok();
+        }
+
+        if (resultado == -2)
+        {
+            return NotFound();
+        }
+
+        return BadRequest();
     }
 }
