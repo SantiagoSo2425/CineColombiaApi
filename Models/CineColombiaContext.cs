@@ -109,6 +109,8 @@ public partial class CineColombiaContext : DbContext
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.IdFuncion).HasColumnName("id_funcion");
             entity.Property(e => e.IdVenta).HasColumnName("id_venta");
+            entity.HasOne<Ventum>().WithMany().HasForeignKey(e => e.IdVenta)
+                  .HasConstraintName("FK__BOLETICA__id_ven");
 
         });
 
@@ -128,6 +130,8 @@ public partial class CineColombiaContext : DbContext
                 .HasColumnName("descuento");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.IdBoletica).HasColumnName("id_boletica");
+            entity.HasOne<Boletica>().WithMany().HasForeignKey(e => e.IdBoletica)
+                  .HasConstraintName("FK__BOLETICA_SILLA__id_bole");
             entity.Property(e => e.IdSilla).HasColumnName("id_silla");
             entity.Property(e => e.PrecioFinal)
                 .HasColumnType("decimal(18, 0)")

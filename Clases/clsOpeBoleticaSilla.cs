@@ -29,6 +29,12 @@ public class clsOpeBoleticaSilla
 
     public int Agregar()
     {
+        if (tblBoleticaSilla.IdBoleticaSilla == 0)
+        {
+            var maxId = oCine.BoleticaSillas.Max(bs => (int?)bs.IdBoleticaSilla) ?? 0;
+            tblBoleticaSilla.IdBoleticaSilla = maxId + 1;
+        }
+
         var idFuncion = (from b in oCine.Boleticas
                          where b.IdBoletica == tblBoleticaSilla.IdBoletica
                          select b.IdFuncion).FirstOrDefault();

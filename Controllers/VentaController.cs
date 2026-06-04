@@ -24,7 +24,7 @@ public class VentaController : ControllerBase
         return oVenta.ListarVentas();
     }
 
-    [HttpGet("{idVenta}")]
+    [HttpGet("{idVenta:int}")]
     public IQueryable ConsultarVenta(int idVenta)
     {
         clsOpeVenta oVenta = new clsOpeVenta(oCine);
@@ -44,6 +44,13 @@ public class VentaController : ControllerBase
         clsOpeVenta oVenta = new clsOpeVenta(oCine);
         oVenta.tblVenta = venta;
         return oVenta.Agregar();
+    }
+
+    [HttpPost("RegistrarVentaCompleta")]
+    public int RegistrarVentaCompleta([FromBody] RegistroVentaDto dto)
+    {
+        clsOpeVenta oVenta = new clsOpeVenta(oCine);
+        return oVenta.RegistrarVentaCompleta(dto);
     }
 
     [HttpPut]

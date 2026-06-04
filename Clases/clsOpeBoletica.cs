@@ -29,6 +29,11 @@ public class clsOpeBoletica
 
     public int Agregar()
     {
+        if (tblBoletica.IdBoletica == 0)
+        {
+            var maxId = oCine.Boleticas.Max(b => (int?)b.IdBoletica) ?? 0;
+            tblBoletica.IdBoletica = maxId + 1;
+        }
         oCine.Boleticas.Add(tblBoletica);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }
