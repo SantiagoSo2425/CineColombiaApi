@@ -29,6 +29,11 @@ public class clsOpeFormato
 
     public int Agregar()
     {
+        if (tblFormato.IdFormato == 0)
+        {
+            var maxId = oCine.Formatos.Max(e => (int?)e.IdFormato) ?? 0;
+            tblFormato.IdFormato = maxId + 1;
+        }
         var existe = (from x in oCine.Formatos
                       where x.IdFormato == tblFormato.IdFormato
                       select x).Any();

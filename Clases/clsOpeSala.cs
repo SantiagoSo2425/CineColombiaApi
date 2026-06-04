@@ -29,6 +29,11 @@ public class clsOpeSala
 
     public int Agregar()
     {
+        if (tblSala.IdSala == 0)
+        {
+            var maxId = oCine.Salas.Max(e => (int?)e.IdSala) ?? 0;
+            tblSala.IdSala = maxId + 1;
+        }
         oCine.Salas.Add(tblSala);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }

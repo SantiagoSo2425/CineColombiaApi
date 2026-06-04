@@ -29,6 +29,11 @@ public class clsOpeTarjetaFidelizacion
 
     public int Agregar()
     {
+        if (tblTarjetaFidelizacion.IdTarjeta == 0)
+        {
+            var maxId = oCine.TarjetaFidelizacions.Max(e => (int?)e.IdTarjeta) ?? 0;
+            tblTarjetaFidelizacion.IdTarjeta = maxId + 1;
+        }
         var existe = (from x in oCine.TarjetaFidelizacions
                       where x.IdCliente == tblTarjetaFidelizacion.IdCliente
                       select x).Any();

@@ -33,6 +33,11 @@ public class clsOpeCiudad
 
     public int Agregar()
     {
+        if (tblCiudad.IdCiudad == 0)
+        {
+            var maxId = oCine.Ciudads.Max(e => (int?)e.IdCiudad) ?? 0;
+            tblCiudad.IdCiudad = maxId + 1;
+        }
         var existe = (from x in oCine.Ciudads
                       where x.IdCiudad == tblCiudad.IdCiudad
                       select x).Any();

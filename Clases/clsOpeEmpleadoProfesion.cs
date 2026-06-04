@@ -29,6 +29,11 @@ public class clsOpeEmpleadoProfesion
 
     public int Agregar()
     {
+        if (tblEmpleadoProfesion.IdEmpProfesion == 0)
+        {
+            var maxId = oCine.EmpleadoProfesions.Max(e => (int?)e.IdEmpProfesion) ?? 0;
+            tblEmpleadoProfesion.IdEmpProfesion = maxId + 1;
+        }
         var existe = (from x in oCine.EmpleadoProfesions
                       where x.IdEmpleado == tblEmpleadoProfesion.IdEmpleado
                       && x.IdProfesion == tblEmpleadoProfesion.IdProfesion

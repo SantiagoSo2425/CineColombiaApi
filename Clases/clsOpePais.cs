@@ -29,6 +29,11 @@ public class clsOpePais
 
     public int Agregar()
     {
+        if (tblPais.IdPais == 0)
+        {
+            var maxId = oCine.Pais.Max(e => (int?)e.IdPais) ?? 0;
+            tblPais.IdPais = maxId + 1;
+        }
         var existe = (from x in oCine.Pais
                       where x.IdPais == tblPais.IdPais
                       select x).Any();

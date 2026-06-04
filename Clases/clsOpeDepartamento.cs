@@ -33,6 +33,11 @@ public class clsOpeDepartamento
 
     public int Agregar()
     {
+        if (tblDepartamento.IdDepartamento == 0)
+        {
+            var maxId = oCine.Departamentos.Max(e => (int?)e.IdDepartamento) ?? 0;
+            tblDepartamento.IdDepartamento = maxId + 1;
+        }
         var existe = (from x in oCine.Departamentos
                       where x.IdDepartamento == tblDepartamento.IdDepartamento
                       select x).Any();

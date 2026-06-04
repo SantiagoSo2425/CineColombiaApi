@@ -29,6 +29,11 @@ public class clsOpeMetodoPago
 
     public int Agregar()
     {
+        if (tblMetodoPago.IdMetodoPago == 0)
+        {
+            var maxId = oCine.MetodoPagos.Max(e => (int?)e.IdMetodoPago) ?? 0;
+            tblMetodoPago.IdMetodoPago = maxId + 1;
+        }
         var existe = (from x in oCine.MetodoPagos
                       where x.IdMetodoPago == tblMetodoPago.IdMetodoPago
                       select x).Any();

@@ -29,6 +29,11 @@ public class clsOpeTipoCliente
 
     public int Agregar()
     {
+        if (tblTipoCliente.IdTipoCliente == 0)
+        {
+            var maxId = oCine.TipoClientes.Max(e => (int?)e.IdTipoCliente) ?? 0;
+            tblTipoCliente.IdTipoCliente = maxId + 1;
+        }
         var existe = (from x in oCine.TipoClientes
                       where x.IdTipoCliente == tblTipoCliente.IdTipoCliente
                       select x).Any();

@@ -29,6 +29,11 @@ public class clsOpeDistribuidora
 
     public int Agregar()
     {
+        if (tblDistribuidora.IdDistribuidora == 0)
+        {
+            var maxId = oCine.Distribuidoras.Max(e => (int?)e.IdDistribuidora) ?? 0;
+            tblDistribuidora.IdDistribuidora = maxId + 1;
+        }
         var existe = (from x in oCine.Distribuidoras
                       where x.IdDistribuidora == tblDistribuidora.IdDistribuidora
                       select x).Any();

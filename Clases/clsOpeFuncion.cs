@@ -29,6 +29,11 @@ public class clsOpeFuncion
 
     public int Agregar()
     {
+        if (tblFuncion.IdFuncion == 0)
+        {
+            var maxId = oCine.Funcions.Max(e => (int?)e.IdFuncion) ?? 0;
+            tblFuncion.IdFuncion = maxId + 1;
+        }
         var existe = (from x in oCine.Funcions
                       where x.IdSala == tblFuncion.IdSala
                       && x.FechaFuncion == tblFuncion.FechaFuncion

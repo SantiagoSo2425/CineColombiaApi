@@ -29,6 +29,11 @@ public class clsOpeTeatro
 
     public int Agregar()
     {
+        if (tblTeatro.IdTeatro == 0)
+        {
+            var maxId = oCine.Teatros.Max(e => (int?)e.IdTeatro) ?? 0;
+            tblTeatro.IdTeatro = maxId + 1;
+        }
         oCine.Teatros.Add(tblTeatro);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }

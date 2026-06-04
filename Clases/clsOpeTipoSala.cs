@@ -29,6 +29,11 @@ public class clsOpeTipoSala
 
     public int Agregar()
     {
+        if (tblTipoSala.IdTipoSala == 0)
+        {
+            var maxId = oCine.TipoSalas.Max(e => (int?)e.IdTipoSala) ?? 0;
+            tblTipoSala.IdTipoSala = maxId + 1;
+        }
         var existe = (from x in oCine.TipoSalas
                       where x.IdTipoSala == tblTipoSala.IdTipoSala
                       select x).Any();

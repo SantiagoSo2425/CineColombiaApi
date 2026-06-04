@@ -24,7 +24,7 @@ public class FuncionController : ControllerBase
         return oFuncion.ListarFunciones();
     }
 
-    [HttpGet("{idFuncion}")]
+    [HttpGet("{idFuncion:int}")]
     public IQueryable ConsultarFuncion(int idFuncion)
     {
         clsOpeFuncion oFuncion = new clsOpeFuncion(oCine);

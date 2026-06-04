@@ -29,6 +29,11 @@ public class clsOpeDireccionEmpleado
 
     public int Agregar()
     {
+        if (tblDireccionEmpleado.IdDireccionEmp == 0)
+        {
+            var maxId = oCine.DireccionEmpleados.Max(e => (int?)e.IdDireccionEmp) ?? 0;
+            tblDireccionEmpleado.IdDireccionEmp = maxId + 1;
+        }
         oCine.DireccionEmpleados.Add(tblDireccionEmpleado);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }

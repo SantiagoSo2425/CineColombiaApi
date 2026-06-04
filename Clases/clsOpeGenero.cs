@@ -29,6 +29,11 @@ public class clsOpeGenero
 
     public int Agregar()
     {
+        if (tblGenero.IdGenero == 0)
+        {
+            var maxId = oCine.Generos.Max(e => (int?)e.IdGenero) ?? 0;
+            tblGenero.IdGenero = maxId + 1;
+        }
         var existe = (from x in oCine.Generos
                       where x.IdGenero == tblGenero.IdGenero
                       select x).Any();

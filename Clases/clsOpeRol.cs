@@ -29,6 +29,11 @@ public class clsOpeRol
 
     public int Agregar()
     {
+        if (tblRol.IdRol == 0)
+        {
+            var maxId = oCine.Rols.Max(e => (int?)e.IdRol) ?? 0;
+            tblRol.IdRol = maxId + 1;
+        }
         var existe = (from x in oCine.Rols
                       where x.IdRol == tblRol.IdRol
                       select x).Any();

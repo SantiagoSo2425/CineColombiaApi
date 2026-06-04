@@ -37,6 +37,11 @@ public class clsOpeUsuarioSistema
 
     public int Agregar()
     {
+        if (tblUsuarioSistema.IdUsuario == 0)
+        {
+            var maxId = oCine.UsuarioSistemas.Max(e => (int?)e.IdUsuario) ?? 0;
+            tblUsuarioSistema.IdUsuario = maxId + 1;
+        }
         var existe = (from x in oCine.UsuarioSistemas
                       where x.Username == tblUsuarioSistema.Username
                       select x).Any();

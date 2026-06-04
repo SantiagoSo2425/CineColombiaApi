@@ -29,6 +29,11 @@ public class clsOpeSilla
 
     public int Agregar()
     {
+        if (tblSilla.IdSilla == 0)
+        {
+            var maxId = oCine.Sillas.Max(e => (int?)e.IdSilla) ?? 0;
+            tblSilla.IdSilla = maxId + 1;
+        }
         var existe = (from x in oCine.Sillas
                       where x.IdSala == tblSilla.IdSala
                       && x.Fila == tblSilla.Fila

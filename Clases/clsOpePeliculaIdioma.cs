@@ -29,6 +29,11 @@ public class clsOpePeliculaIdioma
 
     public int Agregar()
     {
+        if (tblPeliculaIdioma.IdPeliculaIdioma == 0)
+        {
+            var maxId = oCine.PeliculaIdiomas.Max(e => (int?)e.IdPeliculaIdioma) ?? 0;
+            tblPeliculaIdioma.IdPeliculaIdioma = maxId + 1;
+        }
         var existe = (from x in oCine.PeliculaIdiomas
                       where x.IdPelicula == tblPeliculaIdioma.IdPelicula
                       && x.IdIdioma == tblPeliculaIdioma.IdIdioma

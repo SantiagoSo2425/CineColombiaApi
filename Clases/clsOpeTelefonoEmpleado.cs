@@ -29,6 +29,11 @@ public class clsOpeTelefonoEmpleado
 
     public int Agregar()
     {
+        if (tblTelefonoEmpleado.IdTelefonoEmp == 0)
+        {
+            var maxId = oCine.TelefonoEmpleados.Max(e => (int?)e.IdTelefonoEmp) ?? 0;
+            tblTelefonoEmpleado.IdTelefonoEmp = maxId + 1;
+        }
         oCine.TelefonoEmpleados.Add(tblTelefonoEmpleado);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }

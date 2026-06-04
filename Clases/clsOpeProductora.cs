@@ -29,6 +29,11 @@ public class clsOpeProductora
 
     public int Agregar()
     {
+        if (tblProductora.IdProductora == 0)
+        {
+            var maxId = oCine.Productoras.Max(e => (int?)e.IdProductora) ?? 0;
+            tblProductora.IdProductora = maxId + 1;
+        }
         var existe = (from x in oCine.Productoras
                       where x.IdProductora == tblProductora.IdProductora
                       select x).Any();

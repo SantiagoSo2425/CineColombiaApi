@@ -33,6 +33,11 @@ public class clsOpeClasificacion
 
     public int Agregar()
     {
+        if (tblClasificacion.IdClasificacion == 0)
+        {
+            var maxId = oCine.Clasificacions.Max(e => (int?)e.IdClasificacion) ?? 0;
+            tblClasificacion.IdClasificacion = maxId + 1;
+        }
         var existe = (from x in oCine.Clasificacions
                       where x.IdClasificacion == tblClasificacion.IdClasificacion
                       select x).Any();

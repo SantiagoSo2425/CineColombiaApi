@@ -29,6 +29,11 @@ public class clsOpePeliculaFormato
 
     public int Agregar()
     {
+        if (tblPeliculaFormato.IdPeliculaFormato == 0)
+        {
+            var maxId = oCine.PeliculaFormatos.Max(e => (int?)e.IdPeliculaFormato) ?? 0;
+            tblPeliculaFormato.IdPeliculaFormato = maxId + 1;
+        }
         var existe = (from x in oCine.PeliculaFormatos
                       where x.IdPelicula == tblPeliculaFormato.IdPelicula
                       && x.IdFormato == tblPeliculaFormato.IdFormato

@@ -29,6 +29,11 @@ public class clsOpeDireccionCliente
 
     public int Agregar()
     {
+        if (tblDireccionCliente.IdDireccionCli == 0)
+        {
+            var maxId = oCine.DireccionClientes.Max(e => (int?)e.IdDireccionCli) ?? 0;
+            tblDireccionCliente.IdDireccionCli = maxId + 1;
+        }
         oCine.DireccionClientes.Add(tblDireccionCliente);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }

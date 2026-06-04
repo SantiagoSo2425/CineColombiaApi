@@ -29,6 +29,11 @@ public class clsOpeTipoDocumento
 
     public int Agregar()
     {
+        if (tblTipoDocumento.IdTipoDoc == 0)
+        {
+            var maxId = oCine.TipoDocumentos.Max(e => (int?)e.IdTipoDoc) ?? 0;
+            tblTipoDocumento.IdTipoDoc = maxId + 1;
+        }
         var existe = (from x in oCine.TipoDocumentos
                       where x.IdTipoDoc == tblTipoDocumento.IdTipoDoc
                       select x).Any();

@@ -29,6 +29,11 @@ public class clsOpeTipoTelefono
 
     public int Agregar()
     {
+        if (tblTipoTelefono.IdTipoTelefono == 0)
+        {
+            var maxId = oCine.TipoTelefonos.Max(e => (int?)e.IdTipoTelefono) ?? 0;
+            tblTipoTelefono.IdTipoTelefono = maxId + 1;
+        }
         var existe = (from x in oCine.TipoTelefonos
                       where x.IdTipoTelefono == tblTipoTelefono.IdTipoTelefono
                       select x).Any();

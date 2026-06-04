@@ -29,6 +29,11 @@ public class clsOpePelicula
 
     public int Agregar()
     {
+        if (tblPelicula.IdPelicula == 0)
+        {
+            var maxId = oCine.Peliculas.Max(e => (int?)e.IdPelicula) ?? 0;
+            tblPelicula.IdPelicula = maxId + 1;
+        }
         oCine.Peliculas.Add(tblPelicula);
         return oCine.SaveChanges() > 0 ? 1 : 0;
     }

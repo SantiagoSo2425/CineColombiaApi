@@ -29,6 +29,11 @@ public class clsOpePeliculaDistribuidora
 
     public int Agregar()
     {
+        if (tblPeliculaDistribuidora.IdPeliculaDistribuidora == 0)
+        {
+            var maxId = oCine.PeliculaDistribuidoras.Max(e => (int?)e.IdPeliculaDistribuidora) ?? 0;
+            tblPeliculaDistribuidora.IdPeliculaDistribuidora = maxId + 1;
+        }
         var existe = (from x in oCine.PeliculaDistribuidoras
                       where x.IdPelicula == tblPeliculaDistribuidora.IdPelicula
                       && x.IdDistribuidora == tblPeliculaDistribuidora.IdDistribuidora
